@@ -23,7 +23,6 @@ def moving_average(df, window=10, optimal_window=True, iter_num=30):
     pandas.DataFrame
         Original input data together with the moving_average
 
-
     """
 
     dfn = df.copy()
@@ -32,11 +31,27 @@ def moving_average(df, window=10, optimal_window=True, iter_num=30):
     if optimal_window:
         err_rms = []
         err_abs = []
+        win_types = [ 
+            "boxcar", 
+            "triang", 
+            "blackman", 
+            "hamming", 
+            "bartlett", 
+            "parzen", 
+            "bohman", 
+            "blackmanharris", 
+            "nuttall", 
+            "barthann"] 
+#            "kaiser",
+#            "gaussian",
+#            "general_gaussian"
+#            "slepian"]
         windows = range(2, iter_num+2)
 
         # loops through windows to find the best window value
-        for i in windows:
-            mean_data = dfn.original.rolling(i, min_periods=1, center=True).mean()
+        for i, window in enumerate(windows):
+            #for win_type in win_types:
+            mean_data = dfn.original.rolling(window, min_periods=1, win_type=win_types[1], center=True).mean()
             err_rms.append(np.sqrt(np.mean(np.square(dfn.true - mean_data))))
             err_abs.append(np.mean(np.abs(dfn.true - mean_data)))
 
@@ -59,6 +74,5 @@ iter_num = 30
 
 # read the data
 df = read_data("./original.mat")
-
 moving_average(df, window=10, optimal_window=optimal_window)
 
