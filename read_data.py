@@ -21,6 +21,5 @@ def read_data(fname):
     # create a dataframe
     df = pd.DataFrame(data=zip(dat_o, dat_t), columns=['original', 'true'])
 
-    return 
-    df
+    return df
 
