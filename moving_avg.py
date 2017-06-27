@@ -54,7 +54,9 @@ def moving_average(df, window=10, optimal_window=True, iter_num=30,
         # loops through windows to find the best window value
         for i, window in enumerate(windows):
             for j, win_type in enumerate(win_types):
-                mean_data = dfn.original.rolling(window, min_periods=1, win_type=win_types[1], center=True).mean()
+                mean_data = dfn.original.rolling(window, min_periods=1,
+                                                 win_type=win_types[j],
+                                                 center=True).mean()
                 if err_type == "root-mean-sqrt": 
                     errs[i, j] = np.sqrt(np.mean(np.square(dfn.true - mean_data)))
                 if err_type == "mean-absolute":
@@ -65,26 +67,32 @@ def moving_average(df, window=10, optimal_window=True, iter_num=30,
         indx = np.unravel_index(flat_index, errs.shape)
         window = windows[indx[0]]
         win_type = win_types[indx[1]]
-        print "Best pair of window and win_type is: \n"
-        print "window=", window
+        print "Best pair of window and win_type are:"
+        print "window =", window
         print "win_type is ", win_type
 
         # calculate the moving average that corresponds to the optimal window 
-        dfn['moving_avg'] = dfn.original.rolling(window, min_periods=1, center=True).mean()
-
+        dfn['moving_avg'] = dfn.original.rolling(window, min_periods=1,
+                                                 win_type=win_type,
+                                                 center=True).mean()
     else:
-        #dfn['mean'] = pd.rolling_mean(dfn.original, window, center=True)
-        dfn['moving_avg'] = dfn.original.rolling(window, min_periods=1, center=True).mean()
+        dfn['moving_avg'] = dfn.original.rolling(window, min_periods=1,
+                                                 center=True).mean()
+
+    # plot the data
     dfn.plot()
     plt.show()
 
+    return dfn
+
 # run the code
 optimal_window = True
-iter_num = 30
+#optimal_window = False
+iter_num = 50
 err_type = "root-mean-sqrt"
 #err_type = "mean-absolute"
 
 # read the data
 df = read_data("./original.mat")
-moving_average(df, window=10, optimal_window=optimal_window, err_type=err_type)
+dfn = moving_average(df, window=10, optimal_window=optimal_window, err_type=err_type)
 
