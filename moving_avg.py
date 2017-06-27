@@ -79,20 +79,24 @@ def moving_average(df, window=10, optimal_window=True, iter_num=30,
         dfn['moving_avg'] = dfn.original.rolling(window, min_periods=1,
                                                  center=True).mean()
 
+
+    return dfn
+
+if __name__ == "__main__":
+
+    # run the code
+    optimal_window = True
+    #optimal_window = False
+    iter_num = 50
+    err_type = "root-mean-sqrt"
+    #err_type = "mean-absolute"
+
+    # read the data
+    df = read_data("./original.mat")
+    dfn = moving_average(df, window=10, optimal_window=optimal_window, err_type=err_type)
+
     # plot the data
     dfn.plot()
     plt.show()
 
-    return dfn
-
-# run the code
-optimal_window = True
-#optimal_window = False
-iter_num = 50
-err_type = "root-mean-sqrt"
-#err_type = "mean-absolute"
-
-# read the data
-df = read_data("./original.mat")
-dfn = moving_average(df, window=10, optimal_window=optimal_window, err_type=err_type)
 
