@@ -41,12 +41,6 @@ def remove_high_freq_noise(df, sample_rate=1.0, order=3, cutoff=0.1):
     filtered_data = np.roll(filtered_data, shift=lag)
     dfn['filtered'] = filtered_data
 
-    # plot both the original and filtered signals
-    fig2, ax2 = plt.subplots()
-    dfn.plot(ax=ax2)
-    ax2.grid()
-    plt.show()
-
     # get the filter coefficients so we can check its frequency response
     b, a = butter_lowpass(cutoff, sample_rate, order)
 
@@ -80,4 +74,11 @@ if __name__ == "__main__":
     df = read_data("./original.mat")
     dfn = remove_high_freq_noise(df, sample_rate=1.0, order=3,
                             cutoff=0.05)
+
+    # plot both the original and filtered signals
+    fig2, ax2 = plt.subplots()
+    dfn.plot(ax=ax2)
+    ax2.grid()
+    plt.show()
+
 
