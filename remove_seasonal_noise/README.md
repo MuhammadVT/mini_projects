@@ -24,10 +24,10 @@ This will open the Jupyter Notebook software and a demo file in your browser.
 
 ### Data
 
-The data analyzed here is a small set of data that contains 360 number of points. The data is in .mat file. 
-It has two columns, first column is the original data which is obtained from an observation, and the second colums is a simulation data labeled as "true".
+The data analyzed here is a small set of data that contains 360 number of points. The data is in a .mat file. 
+It has two columns, first column is the `original` data which is obtained from an observation, and the second colums is a simulation data labeled as `true`.
 The simulation data is there to tell us what the actual data might look like. 
 
 **Features**
-1.  `original`: floating piont data from observation
+1.  `original`: floating piont data from an observation
 2. `true`: data from a simulation
