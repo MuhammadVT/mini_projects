@@ -1,4 +1,4 @@
-This mini-project shows a few approaches to remove seasonal noise from a small size of data set
+This mini-project implements a few methods to remove seasonal noise from a small size of data set.
 
 ### Install
 
@@ -8,12 +8,12 @@ This project requires **Python 2.7** and the following Python libraries installe
 - [Pandas](http://pandas.pydata.org/)
 - [matplotlib](http://matplotlib.org/)
 
-You will also need to have software installed to run and execute a [Jupyter Notebook](http://ipython.org/notebook.html)
+You will also need to install [Jupyter Notebook](http://ipython.org/notebook.html) to run the demo.ipynb notebook 
 
 ### Run
 
 In a terminal or command window, navigate to the project directory `remove_seasonal_noise/`
-and run one of the following commands:
+and run the following command:
 
 ```bash
 jupyter notebook demo.ipynb
