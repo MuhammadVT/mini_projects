@@ -1,12 +1,12 @@
 from scipy import io
 import pandas as pd
 
-def read_data(fname):
+def read_data(fname=None):
     """ reads data from a .m file 
     Parameters
     ----------
-    fname : str
-        file path
+    fname : str or None
+        file path, default to None
 
     Return
     ------
