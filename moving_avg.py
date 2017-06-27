@@ -51,7 +51,7 @@ def moving_average(df, window=10, optimal_window=True, iter_num=30,
         windows = range(2, iter_num+2)
         errs = np.full((len(windows), len(win_types)), 1e6)
 
-        # loops through windows to find the best window value
+        # loops through windows to find the best window win_type values
         for i, window in enumerate(windows):
             for j, win_type in enumerate(win_types):
                 mean_data = dfn.original.rolling(window, min_periods=1,
